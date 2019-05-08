@@ -3,6 +3,9 @@
 const padNumber = (input: number): string =>
   input < 10 ? `0${input}` : input.toString();
 
+const getMinutesBetweenNowAndStartTime = (now: Date, startDate: Date): number =>
+  (startDate - now) / 1000 / 60;
+
 const describeEventTimeInWords = (
   now: Date,
   startDate: Date,
@@ -12,12 +15,15 @@ const describeEventTimeInWords = (
     throw new Error('startDate cannot be after endDate');
   }
 
-  const minutesBetweenNowAndStartTime = (startDate - now) / 1000 / 60;
+  const minutesBetweenNowAndStartTime = getMinutesBetweenNowAndStartTime(
+    now,
+    startDate,
+  );
   if (minutesBetweenNowAndStartTime < 1) {
-    return 'in less than a minute';
+    return 'Starts in less than a minute';
   }
   if (minutesBetweenNowAndStartTime < 60) {
-    return `in ${minutesBetweenNowAndStartTime} minute${
+    return `Starts in ${minutesBetweenNowAndStartTime} minute${
       minutesBetweenNowAndStartTime === 1 ? '' : 's'
     }`;
   }
@@ -27,14 +33,4 @@ const describeEventTimeInWords = (
   )} - ${padNumber(endDate.getHours())}:${padNumber(endDate.getMinutes())}`;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { describeEventTimeInWords };
-
-/*
-less than a minute
-a minute
-5 minutes
-15 minutes
-an hour
-a while
-*/
+export { getMinutesBetweenNowAndStartTime, describeEventTimeInWords };

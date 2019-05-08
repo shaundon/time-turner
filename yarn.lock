@@ -966,6 +966,11 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@skyscanner/popper.js@^1.12.9-beta.1":
+  version "1.12.9-beta.1"
+  resolved "https://registry.yarnpkg.com/@skyscanner/popper.js/-/popper.js-1.12.9-beta.1.tgz#ba4b680b7e7f05298c9e92119d9392173425d2d4"
+  integrity sha512-yXFrSHa2qsXXem8ZpsWjvBEiMIzPOhlVD7uIdwWuzKGyKCxuMFBlociYp6D5tGBVSmF7Mbq5YtXkefQD8ZVeAg==
+
 "@svgr/core@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@svgr/core/-/core-2.4.1.tgz#03a407c28c4a1d84305ae95021e8eabfda8fa731"
@@ -2035,6 +2040,17 @@ bpk-component-code@*:
     bpk-react-utils "^2.7.5"
     prop-types "^15.6.2"
 
+bpk-component-icon@^3.27.12:
+  version "3.27.12"
+  resolved "https://registry.yarnpkg.com/bpk-component-icon/-/bpk-component-icon-3.27.12.tgz#90ebf405b55aef968e25e12494ea1f20222d6f1e"
+  integrity sha512-ObeHjq1T4g3r4R65whhcLXQWXsL/2mL/qVWZWOaEZubhX/JvOCQvnmrIEoaxBHzoNCVrFIpgAfBoyR2nOkPA7g==
+  dependencies:
+    bpk-mixins "^17.19.0"
+    bpk-react-utils "^2.7.6"
+    bpk-svgs "^6.4.6"
+    bpk-tokens "^27.6.0"
+    prop-types "^15.6.2"
+
 bpk-component-panel@^1.0.121:
   version "1.0.121"
   resolved "https://registry.yarnpkg.com/bpk-component-panel/-/bpk-component-panel-1.0.121.tgz#deb2e4692362759ea4cf4ad626f0ea052d7441a3"
@@ -2051,6 +2067,16 @@ bpk-component-text@*:
   dependencies:
     bpk-mixins "^17.18.2"
     bpk-react-utils "^2.7.5"
+    prop-types "^15.6.2"
+
+bpk-component-tooltip@^3.1.73:
+  version "3.1.73"
+  resolved "https://registry.yarnpkg.com/bpk-component-tooltip/-/bpk-component-tooltip-3.1.73.tgz#047156c6addf8886430d999105e0e1a9951ff98a"
+  integrity sha512-QgzD+Lk5QjBsQhwtbUQJK+4/egB3MCrde1CMqnLdslcq+Wkd68MXQw6r6mH7ioToSenCfvqRDqBjmGmgHMwvjA==
+  dependencies:
+    "@skyscanner/popper.js" "^1.12.9-beta.1"
+    bpk-mixins "^17.19.0"
+    bpk-react-utils "^2.7.6"
     prop-types "^15.6.2"
 
 bpk-mixins@*, bpk-mixins@^17.11.31, bpk-mixins@^17.18.2:

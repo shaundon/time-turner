@@ -1,0 +1,35 @@
+@import '~bpk-mixins';
+
+@mixin container {
+  max-width: $bpk-breakpoint-desktop;
+  margin: 0 auto;
+}
+
+.card {
+
+  box-shadow: none;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $bpk-spacing-sm;
+  color: $bpk-color-white;
+
+  &--very-soon {
+    background-color: $bpk-color-red-500;
+  }
+
+  &--soon {
+    background-color: $bpk-color-yellow-500;
+  }
+
+  &--later {
+    background-color: $bpk-color-green-500;
+  }
+
+  &__main {
+    align-self: center;
+  }
+
+  &__button {
+    align-self: center;
+  }
+}

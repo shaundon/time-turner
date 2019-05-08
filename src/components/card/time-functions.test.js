@@ -17,7 +17,7 @@ describe('describeEventTimeInWords', () => {
     const start = new Date(2019, 4, 4, 11, 0, 0);
     const end = new Date(2019, 4, 4, 11, 30, 0);
     expect(describeEventTimeInWords(now, start, end)).toEqual(
-      'in less than a minute',
+      'Starts in less than a minute',
     );
   });
 
@@ -25,14 +25,18 @@ describe('describeEventTimeInWords', () => {
     const now = new Date(2019, 4, 4, 10, 59, 0);
     const start = new Date(2019, 4, 4, 11, 0, 0);
     const end = new Date(2019, 4, 4, 11, 30, 0);
-    expect(describeEventTimeInWords(now, start, end)).toEqual('in 1 minute');
+    expect(describeEventTimeInWords(now, start, end)).toEqual(
+      'Starts in 1 minute',
+    );
   });
 
   it(`should say "42 minutes"`, () => {
     const now = new Date(2019, 4, 4, 10, 18, 0);
     const start = new Date(2019, 4, 4, 11, 0, 0);
     const end = new Date(2019, 4, 4, 11, 30, 0);
-    expect(describeEventTimeInWords(now, start, end)).toEqual('in 42 minutes');
+    expect(describeEventTimeInWords(now, start, end)).toEqual(
+      'Starts in 42 minutes',
+    );
   });
 
   it(`should say "11:00 - 11:30"`, () => {

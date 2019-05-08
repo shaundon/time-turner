@@ -7,16 +7,19 @@ import STYLES from './App.scss';
 
 const c = className => STYLES[className] || 'UNKNOWN';
 
-const startDate = new Date(2019, 6, 6, 11, 0, 0);
-const endDate = new Date(2019, 6, 6, 12, 0, 0);
-
 const App = () => (
   <main className={c('App__main')}>
     <Card
-      title="Stand up"
+      title="Title of first meeting"
       description="The event description is this."
-      startDate={startDate}
-      endDate={endDate}
+      startDate={new Date(2019, 6, 6, 11, 0, 0)}
+      endDate={new Date(2019, 6, 6, 11, 10, 0)}
+    />
+    <Card
+      title="Title of second meeting"
+      description="The event description is this."
+      startDate={new Date(2019, 6, 6, 11, 15, 0)}
+      endDate={new Date(2019, 6, 6, 12, 0, 0)}
     />
   </main>
 );
