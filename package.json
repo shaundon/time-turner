@@ -48,10 +48,7 @@
   "homepage": "./",
   "main": "src/electron-starter.js",
   "build": {
-    "appId": "com.electron.electron-with-create-react-app",
-    "win": {
-      "iconUrl": "https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-256.png"
-    },
+    "appId": "uk.sdonnelly.time-turner",
     "directories": {
       "buildResources": "public"
     }
