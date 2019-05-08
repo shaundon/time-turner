@@ -1,0 +1,11 @@
+@import '~bpk-mixins';
+
+.settings {
+  background-color: $bpk-color-gray-900;
+  max-width: $bpk-breakpoint-mobile;
+  margin: 0 auto;
+
+  &__title {
+    color: $bpk-color-gray-50;
+  }
+}

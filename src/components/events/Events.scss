@@ -1,13 +1,9 @@
 @import '~bpk-mixins';
 
-@mixin container {
-}
-
-.App {
+.events {
 
   &__main {
     background-color: $bpk-color-gray-900;
-    padding: $bpk-spacing-sm;
     max-width: $bpk-breakpoint-mobile;
     margin: 0 auto;
   }
