@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import BpkButton from 'bpk-component-button';
 
 import CurrentEvent from '../current-event';
 import LaterEvent from '../later-event';
