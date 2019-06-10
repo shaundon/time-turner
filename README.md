@@ -8,11 +8,12 @@ This is **very** WIP.
 
 ## Instructions
 
-First, install deps with `yarn`.
-
-To run **just** in a browser: `yarn react-start`.
-To run in a browser **and** in Electron: `yarn start`.
-To build the Electron app for production: `yarn dist`.
+1. Install deps with `yarn`.
+1. Make a copy of `config.example.json` named `config.json` and put your client ID in there.
+1. Run it with `yarn react-start`.
+1. Go to `http://locahost:3000`.
+1. Log in.
+1. Once it says you're logged in (you'll see your name), go to `http://localhost:3000/events`
 
 ## Behaviour
 
@@ -26,9 +27,12 @@ Meeting cards are colour coded:
 
 ## To do
 
-* Settings page
-* Actually talk to the API and stop using hard-coded data.
-* Get packaging the Electron app working.
+* Reloading.
+* The log out button doesn't work.
+* Proper Electron support including packaging.
+* Settings page.
+* Parse for meeting links.
+* Make it look nicer.
 * Set up CI or something and maybe some snapshots.
-* Truncate long meeting titles
+* Truncate long meeting titles.
 * Figure out how to handle multiple meetings occupying the same timeslot. Maybe make meetings hideable?
