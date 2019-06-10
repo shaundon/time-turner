@@ -1,70 +1,39 @@
 import { Client } from '@microsoft/microsoft-graph-client';
-import { UserAgentApplication } from 'msal';
-import { MSALAuthenticationProvider } from '@microsoft/microsoft-graph-client/lib/src/MSALAuthenticationProvider';
 
-import { clientId } from '../config.json';
+import { getStartOfToday, getStartOfTomorrow } from './time-functions';
 
-const scopes = ['user.read', 'calendars.read'];
-
-const authCallback = (error, response) => {
-  if (error) {
-    throw new Error(error);
-  }
-  console.log('Auth callback', response);
-};
-
-const getMsalInstance = () => {
-  const msalInstance = new UserAgentApplication({
-    auth: {
-      clientId,
-      redirectUri: 'http://localhost:3000',
-    },
-    cache: {
-      cacheLocation: 'localStorage',
-      storeAuthStateInCookie: true,
+const getAuthenticatedClient = accessToken => {
+  const client = Client.init({
+    authProvider: done => {
+      done(null, accessToken.accessToken);
     },
   });
-  return msalInstance;
+  return client;
 };
 
-const getUserLogin = (msalInstance: UserAgentApplication) =>
-  new Promise((resolve, reject) => {
-    if (msalInstance.getAccount()) {
-      resolve(msalInstance.getAccount());
-    } else {
-      msalInstance.handleRedirectCallback((error, response) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(response);
-        }
-      });
-      msalInstance.loginRedirect({ scopes });
-    }
-  });
+const getUserDetails = async accessToken => {
+  const client = getAuthenticatedClient(accessToken);
 
-const getAccessToken = (msalInstance: UserAgentApplication) => {
-  console.log('getting token');
-  return new Promise((resolve, reject) => {
-    msalInstance
-      .acquireTokenSilent({ scopes })
-      .then(accessTokenResponse => {
-        console.log('accessTokenResponse', accessTokenResponse);
-        resolve(accessTokenResponse);
-      })
-      .catch(error => {
-        console.error('accesstokenerror', error);
-        reject(error);
-      });
-  });
+  const user = await client.api('/me').get();
+  return user;
 };
 
-const logInUserWithAccessToken = async () => {
-  const msalInstance = getMsalInstance();
-  const authData = await getUserLogin(msalInstance);
-  console.log(authData);
-  const accessTokenData = await getAccessToken(msalInstance);
-  // console.log(accessTokenData);
+const getEvents = async accessToken => {
+  const client = getAuthenticatedClient(accessToken);
+
+  const events = await client
+    .api(
+      `/me/calendar/calendarView?startDateTime=${getStartOfToday().toDateString()}&endDateTime=${getStartOfTomorrow().toDateString()}`,
+    )
+    .filter(
+      `isAllDay eq false and
+      isCancelled eq false`,
+    )
+    .select('subject,organizer,start,end,body,bodyPreview')
+    .orderby('start/dateTime ASC')
+    .get();
+
+  return events;
 };
 
-export { getUserLogin, getAccessToken, logInUserWithAccessToken };
+export { getUserDetails, getEvents };

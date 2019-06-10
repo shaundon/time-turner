@@ -1,3 +1,4 @@
 {
-  "clientId": ""
+  "clientId": "",
+  "scopes": ["user.read", "calendars.read"]
 }

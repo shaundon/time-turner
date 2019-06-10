@@ -11,4 +11,21 @@ const getEventTimes = (startDate: Date, endDate: Date): string =>
     startDate.getMinutes(),
   )} - ${padNumber(endDate.getHours())}:${padNumber(endDate.getMinutes())}`;
 
-export { getEventTimes, getMinutesBetweenNowAndStartTime };
+const getStartOfToday = () => {
+  const now = new Date();
+  const midnightToday = now.setHours(0, 0, 0, 0);
+  return new Date(midnightToday);
+};
+
+const getStartOfTomorrow = () => {
+  const now = new Date();
+  const midnightTomorrow = now.setHours(24, 0, 0, 0);
+  return new Date(midnightTomorrow);
+};
+
+export {
+  getEventTimes,
+  getMinutesBetweenNowAndStartTime,
+  getStartOfToday,
+  getStartOfTomorrow,
+};

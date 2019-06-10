@@ -1,43 +1,85 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import BpkText from 'bpk-component-text';
 import { cssModules } from 'bpk-react-utils';
 import BpkButton from 'bpk-component-button';
 
-import { logInUserWithAccessToken } from '../../common/api-functions';
+import {
+  getUserAgentApplication,
+  getAuthenticatedState,
+  getUserProfile,
+  logIn,
+} from '../../common/auth-functions';
 
 import STYLES from './Settings.scss';
 
 const getClassName = cssModules(STYLES);
 
-const Settings = () => {
-  const authenticated = false;
-  return (
-    <main className={getClassName('settings')}>
-      <BpkText textStyle="xl" bold className={getClassName('settings__row')}>
-        Time Turner
-      </BpkText>
+class Settings extends Component {
+  constructor() {
+    super();
 
-      {!authenticated && (
-        <section>
-          <div className={getClassName('settings__row')}>
-            <BpkButton onClick={logInUserWithAccessToken}>
-              Sign in to Office 365
-            </BpkButton>
-          </div>
-        </section>
-      )}
+    this.userAgentApplication = getUserAgentApplication();
+    const isAuthenticated = getAuthenticatedState(this.userAgentApplication);
 
-      {authenticated && (
-        <section>
-          <div className={getClassName('settings__row')}>
-            <BpkButton>Sign out of Office 365</BpkButton>
-          </div>
-        </section>
-      )}
-    </main>
-  );
-};
+    if (isAuthenticated) {
+      this.getUser();
+    }
+
+    this.state = {
+      isAuthenticated,
+      user: null,
+    };
+  }
+
+  getUser = async () => {
+    const user = await getUserProfile(this.userAgentApplication);
+    console.log(user);
+    this.setState({
+      isAuthenticated: true,
+      user,
+    });
+  };
+
+  loginFlow = async () => {
+    await logIn(this.userAgentApplication);
+    this.getUser();
+  };
+
+  render() {
+    const { isAuthenticated, user } = this.state;
+    return (
+      <main className={getClassName('settings')}>
+        <BpkText textStyle="xl" bold className={getClassName('settings__row')}>
+          Time Turner
+        </BpkText>
+
+        {!isAuthenticated && (
+          <section>
+            <div className={getClassName('settings__row')}>
+              <BpkButton onClick={this.loginFlow}>
+                Sign in to Office 365
+              </BpkButton>
+            </div>
+          </section>
+        )}
+
+        {isAuthenticated && (
+          <section>
+            {user && (
+              <BpkText>
+                Signed in as <strong>{user.displayName}</strong>
+              </BpkText>
+            )}
+            <div className={getClassName('settings__row')}>
+              <BpkButton>Sign out of Office 365</BpkButton>
+            </div>
+          </section>
+        )}
+      </main>
+    );
+  }
+}
 
 export default Settings;

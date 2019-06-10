@@ -1,34 +1,81 @@
 // @flow
 
-import React from 'react';
-import BpkButton from 'bpk-component-button';
+import React, { Component } from 'react';
 
 import CurrentEvent from '../current-event';
 import LaterEvent from '../later-event';
+import {
+  getAccessToken,
+  getUserAgentApplication,
+} from '../../common/auth-functions';
+import { getEvents } from '../../common/api-functions';
 
 import STYLES from './Events.scss';
 
 const c = className => STYLES[className] || 'UNKNOWN';
 
-const Events = () => (
-  <main className={c('events__main')}>
-    <CurrentEvent
-      title="Title of first meeting"
-      description="The event description is this."
-      startDate={new Date(2019, 6, 6, 11, 0, 0)}
-      endDate={new Date(2019, 6, 6, 11, 10, 0)}
-    />
-    <LaterEvent
-      title="Title of second meeting"
-      startDate={new Date(2019, 6, 6, 11, 15, 0)}
-      endDate={new Date(2019, 6, 6, 12, 0, 0)}
-    />
-    <LaterEvent
-      title="Title of third meeting"
-      startDate={new Date(2019, 6, 6, 14, 0, 0)}
-      endDate={new Date(2019, 6, 6, 16, 0, 0)}
-    />
-  </main>
-);
+class Events extends Component {
+  constructor() {
+    super();
+    this.state = {
+      events: null,
+    };
+  }
+
+  async componentDidMount() {
+    const userAgentApplication = getUserAgentApplication();
+    if (userAgentApplication) {
+      const accessToken = await getAccessToken(userAgentApplication);
+      const events = await getEvents(accessToken);
+      this.setState({
+        events: events.value,
+      });
+    }
+  }
+
+  /*
+  Event format:
+
+  subject: string,
+  start: { dateTime: Date, timeZone: string },
+  end: { dateTime: Date, timeZone: string },
+  organizer: {
+    emailAddress: { name: string, address: string },
+  },
+
+  */
+
+  render() {
+    const { events } = this.state;
+    console.log(events);
+    if (!events) {
+      return <p>Getting events..</p>;
+    }
+    if (events.length === 0) {
+      return <p>No events</p>;
+    }
+
+    const nextEvent = events.splice(0, 1)[0];
+
+    return (
+      <main className={c('events__main')}>
+        <CurrentEvent
+          title={nextEvent.subject}
+          description="todo"
+          startDate={new Date(nextEvent.start.dateTime)}
+          endDate={new Date(nextEvent.end.dateTime)}
+        />
+        {events.map(event => (
+          <LaterEvent
+            key={event.id}
+            title={event.subject}
+            startDate={new Date(event.start.dateTime)}
+            endDate={new Date(event.end.dateTime)}
+          />
+        ))}
+      </main>
+    );
+  }
+}
 
 export default Events;

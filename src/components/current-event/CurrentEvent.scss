@@ -10,13 +10,14 @@
   color: $bpk-color-gray-100;
 
   &--very-soon {
-    background-color: $bpk-color-red-500;
-    color: $bpk-color-red-50;
+    background-color: $bpk-color-red-900;
+    color: $bpk-color-red-500;
   }
 
   &--soon {
     background-color: $bpk-color-yellow-700;
     color: $bpk-color-yellow-50;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
 
   &__main {
