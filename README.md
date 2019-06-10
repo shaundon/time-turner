@@ -25,9 +25,10 @@ Meeting cards are colour coded:
 * Yellow if the meeting is more than 15 minutes away.
 * Grey otherwise.
 
+Currently refreshes every two minutes.
+
 ## To do
 
-* Reloading.
 * The log out button doesn't work.
 * Proper Electron support including packaging.
 * Settings page.

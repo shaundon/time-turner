@@ -31,6 +31,9 @@ class Events extends Component {
         events: events.value,
       });
     }
+
+    // TODO sort this out.
+    window.setTimeout(() => window.location.reload(), 120000);
   }
 
   /*
