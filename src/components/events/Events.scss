@@ -1,9 +1,8 @@
 @import '~bpk-mixins';
 
 .events {
-
   &__main {
-    background-color: $bpk-color-gray-900;
+    background-color: $bpk-color-sky-gray;
     max-width: $bpk-breakpoint-mobile;
     margin: 0 auto;
   }
