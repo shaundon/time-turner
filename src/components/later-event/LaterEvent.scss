@@ -1,13 +1,12 @@
 @import '~bpk-mixins';
 
-
 .later-event {
   box-shadow: none;
   display: flex;
   justify-content: space-between;
   margin-bottom: $bpk-spacing-xs;
-  color: $bpk-color-gray-100;
-  background-color: $bpk-color-gray-700;
+  color: $bpk-color-sky-gray-tint-07;
+  background-color: $bpk-color-sky-gray-tint-01;
 
   &__title {
     align-self: center;
@@ -18,12 +17,12 @@
   }
 
   &--very-soon {
-    background-color: $bpk-color-red-500;
-    color: $bpk-color-red-50;
+    background-color: $bpk-color-panjin;
+    color: $bpk-color-harbour;
   }
 
   &--soon {
-    background-color: $bpk-color-yellow-900;
-    color: $bpk-color-yellow-50;
+    background-color: $bpk-color-kolkata;
+    color: $bpk-color-bagan;
   }
 }
