@@ -1,2 +1,2 @@
-react: yarn react-start
-electron: yarn electron-start
+react: npm run react-start
+electron: npm run electron-start

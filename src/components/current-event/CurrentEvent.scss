@@ -2,29 +2,32 @@
 
 .current-event {
 
-  background-color: $bpk-color-gray-700;
+  background-color: $bpk-color-sky-gray;
   box-shadow: none;
   display: flex;
   justify-content: space-between;
   margin-bottom: $bpk-spacing-sm;
-  color: $bpk-color-gray-100;
+  color: $bpk-color-sky-gray-tint-05;
 
   &--very-soon {
-    background-color: $bpk-color-red-900;
-    color: $bpk-color-red-500;
+    background-color: $bpk-color-panjin;
+    color: $bpk-color-harbour;
   }
 
   &--soon {
-    background-color: $bpk-color-yellow-700;
-    color: $bpk-color-yellow-50;
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    background-color: $bpk-color-kolkata;
+    color: $bpk-color-bagan;
   }
 
   &__main {
     align-self: center;
   }
 
-  &__button {
+  &__time-and-button {
     align-self: center;
+  }
+
+  &__button {
+    margin-right: $bpk-spacing-xs;
   }
 }

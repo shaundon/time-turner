@@ -17,7 +17,7 @@ This is **very** WIP.
 
 ## Behaviour
 
-Displays the day's meetings as cards in time order. The topmost card (current / next meeting) will display a link to join the meeting URL if applicable.
+Displays the day's meetings as cards in time order. The topmost card (current / next meeting) will display a link to join the meeting URL if applicable, as well as the location of it.
 
 Meeting cards are colour coded:
 
@@ -32,8 +32,6 @@ Currently refreshes every two minutes.
 * The log out button doesn't work.
 * Proper Electron support including packaging.
 * Settings page.
-* Parse for meeting links.
-* Make it look nicer.
 * Set up CI or something and maybe some snapshots.
 * Truncate long meeting titles.
 * Figure out how to handle multiple meetings occupying the same timeslot. Maybe make meetings hideable?

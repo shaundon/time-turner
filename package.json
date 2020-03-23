@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@microsoft/microsoft-graph-client": "^1.6.0",
-    "backpack-react-scripts": "7.0.0",
+    "backpack-react-scripts": "^7.0.5",
     "bpk-component-button": "*",
     "bpk-component-code": "*",
     "bpk-component-icon": "^3.27.12",
@@ -46,9 +46,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron": "^5.0.1",
-    "electron-builder": "^20.39.0",
-    "eslint-config-skyscanner-with-prettier": "^0.8.0",
+    "electron": "^8.1.1",
+    "electron-builder": "^22.3.1",
+    "eslint-config-skyscanner": "^5.2.0",
     "foreman": "^3.0.1"
   },
   "homepage": "./",

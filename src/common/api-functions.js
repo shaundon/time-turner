@@ -29,7 +29,7 @@ const getEvents = async accessToken => {
       `isAllDay eq false and
       isCancelled eq false`,
     )
-    .select('subject,organizer,start,end,body,bodyPreview')
+    .select('subject,organizer,start,end,body,bodyPreview,location')
     .orderby('start/dateTime ASC')
     .get();
 

@@ -6,8 +6,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: $bpk-spacing-xs;
-  color: $bpk-color-gray-100;
-  background-color: $bpk-color-gray-700;
+  color: $bpk-color-sky-gray-tint-04;
+  background-color: $bpk-color-sky-gray;
 
   &__title {
     align-self: center;
@@ -15,15 +15,5 @@
 
   &__time {
     align-self: center;
-  }
-
-  &--very-soon {
-    background-color: $bpk-color-red-500;
-    color: $bpk-color-red-50;
-  }
-
-  &--soon {
-    background-color: $bpk-color-yellow-900;
-    color: $bpk-color-yellow-50;
   }
 }

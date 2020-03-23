@@ -20,14 +20,15 @@ const AlignedPhoneCallIcon = withButtonAlignment(withRtlSupport(PhoneCallcon));
 const getClassName = cssModules(STYLES);
 
 type Props = {
-  description: string,
   endDate: Date,
   startDate: Date,
   title: string,
+  location: ?string,
+  meetingLink: ?string,
 };
 
 const CurrentEvent = (props: Props) => {
-  const { startDate, endDate, title, description } = props;
+  const { startDate, endDate, title, location, meetingLink } = props;
 
   const now = new Date(2019, 6, 6, 10, 57, 0);
   const minutesBetweenNowAndStartTime = getMinutesBetweenNowAndStartTime(
@@ -36,40 +37,42 @@ const CurrentEvent = (props: Props) => {
     endDate,
   );
 
+  const meetingStartingVerySoon =
+    minutesBetweenNowAndStartTime > -5 && minutesBetweenNowAndStartTime < 5;
+
   const classNames = getClassName(
     'current-event',
-    minutesBetweenNowAndStartTime > -5 &&
-      minutesBetweenNowAndStartTime < 5 &&
-      'current-event--very-soon',
+    meetingStartingVerySoon && 'current-event--very-soon',
     minutesBetweenNowAndStartTime >= 5 &&
       minutesBetweenNowAndStartTime < 20 &&
       'current-event--soon',
   );
 
-  // TODO use real link.
-  const meetingLink = null; // 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-
   return (
     <BpkPanel fullWidth className={classNames}>
       <section className={getClassName('current-event__main')}>
         <section>
-          <BpkText textStyle="base">{title}</BpkText>
+          <BpkText textStyle="base" bold>
+            {title}
+          </BpkText>
         </section>
-        <BpkText textStyle="xs"> {getEventTimes(startDate, endDate)}</BpkText>
+        {location && <BpkText textStyle="xs">{location}</BpkText>}
       </section>
-      {meetingLink && (
-        <section className={getClassName('current-event__button')}>
+      <section className={getClassName('current-event__time-and-button')}>
+        {meetingStartingVerySoon && meetingLink && (
           <BpkButton
-            secondary
+            outline
             iconOnly
             href={meetingLink}
             blank
             title={meetingLink}
+            className={getClassName('current-event__button')}
           >
             <AlignedPhoneCallIcon />
           </BpkButton>
-        </section>
-      )}
+        )}
+        <BpkText textStyle="xs"> {getEventTimes(startDate, endDate)}</BpkText>
+      </section>
     </BpkPanel>
   );
 };

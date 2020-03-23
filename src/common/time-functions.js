@@ -20,6 +20,7 @@ const getStartOfToday = () => {
 const getStartOfTomorrow = () => {
   const now = new Date();
   const midnightTomorrow = now.setHours(24, 0, 0, 0);
+  // const midnightTomorrow = now.setHours(48, 0, 0, 0);
   return new Date(midnightTomorrow);
 };
 

@@ -14,6 +14,13 @@ import STYLES from './Events.scss';
 
 const c = className => STYLES[className] || 'UNKNOWN';
 
+const getMeetingLinkFromString = input => {
+  // TODO this should be configurable at some point.
+  const meetingLinkRegex = /https:\/\/skyscanner\.zoom\.us\/[a-z0-9]\/[0-9]+/;
+  const matches = input.match(meetingLinkRegex);
+  return matches ? matches[0] : null;
+};
+
 class Events extends Component {
   constructor() {
     super();
@@ -59,14 +66,16 @@ class Events extends Component {
     }
 
     const nextEvent = events.splice(0, 1)[0];
+    console.log(nextEvent);
 
     return (
       <main className={c('events__main')}>
         <CurrentEvent
           title={nextEvent.subject}
-          description="todo"
           startDate={new Date(nextEvent.start.dateTime)}
           endDate={new Date(nextEvent.end.dateTime)}
+          location={nextEvent.location.displayName}
+          meetingLink={getMeetingLinkFromString(nextEvent.body.content)}
         />
         {events.map(event => (
           <LaterEvent
@@ -74,6 +83,7 @@ class Events extends Component {
             title={event.subject}
             startDate={new Date(event.start.dateTime)}
             endDate={new Date(event.end.dateTime)}
+            meetingLink={getMeetingLinkFromString(nextEvent.body.content)}
           />
         ))}
       </main>
