@@ -30,7 +30,7 @@ type Props = {
 const CurrentEvent = (props: Props) => {
   const { startDate, endDate, title, location, meetingLink } = props;
 
-  const now = new Date(2019, 6, 6, 10, 57, 0);
+  const now = new Date();
   const minutesBetweenNowAndStartTime = getMinutesBetweenNowAndStartTime(
     now,
     startDate,
