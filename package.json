@@ -46,7 +46,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron": "^8.1.1",
+    "electron": "^15.5.5",
     "electron-builder": "^22.3.1",
     "eslint-config-skyscanner": "^5.2.0",
     "foreman": "^3.0.1"
