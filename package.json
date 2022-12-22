@@ -18,7 +18,7 @@
     "bpk-react-utils": "^2.7.6",
     "bpk-stylesheets": "*",
     "bpk-theming": "^1.2.5",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "msal": "^1.0.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.6.0",
